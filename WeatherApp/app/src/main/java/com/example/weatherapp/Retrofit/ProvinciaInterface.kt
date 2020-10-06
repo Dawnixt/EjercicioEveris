@@ -10,6 +10,4 @@ interface ProvinciaInterface {
     @GET("v1/provincias")
     fun getProvincias(): Call<ArrayList<Provincia>>
 
-
-
 }

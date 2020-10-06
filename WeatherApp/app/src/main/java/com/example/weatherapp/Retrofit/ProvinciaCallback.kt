@@ -3,7 +3,7 @@ package com.example.weatherapp.Retrofit
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelStoreOwner
 import com.example.weatherapp.Entities.Provincia
-import com.example.weatherapp.ViewModel.MainVM
+import com.example.weatherapp.ViewModel.MainViewModel
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import retrofit2.Call
@@ -15,11 +15,12 @@ import retrofit2.converter.gson.GsonConverterFactory
 class ProvinciaCallback: Callback<ArrayList<Provincia>> {
 
     val SERVER_URL = "https://www.el-tiempo.net/api/json/"
-    var vm: MainVM = MainVM()
+    var viewModel: MainViewModel = MainViewModel()
 
+    //Mover a ViewModel
     fun start(owner: ViewModelStoreOwner){
         var gson: Gson = GsonBuilder().setLenient().create()
-        vm = ViewModelProvider(owner).get(MainVM::class.java)
+        viewModel = ViewModelProvider(owner).get(MainViewModel::class.java)
 
         var retrofit: Retrofit = Retrofit.Builder().baseUrl(SERVER_URL).addConverterFactory(GsonConverterFactory.create()).build()
         var provinciaInterface: ProvinciaInterface = retrofit.create(ProvinciaInterface::class.java)
@@ -31,15 +32,15 @@ class ProvinciaCallback: Callback<ArrayList<Provincia>> {
     override fun onResponse(call: Call<ArrayList<Provincia>>,response: Response<ArrayList<Provincia>>) {
         if (response.isSuccessful){
             var provincia: ArrayList<Provincia> = response.body() ?: ArrayList()
-            vm.listaProvincia.value = provincia
+            viewModel.listaProvincia.value = provincia
         }
         else{
-            vm.setMensaje(response.errorBody().toString())
+            viewModel.setMensaje(response.errorBody().toString())
         }
     }
 
     override fun onFailure(call: Call<ArrayList<Provincia>>, t: Throwable) {
-        vm.setMensaje(t.message ?: "")
+        viewModel.setMensaje(t.message ?: "")
     }
 
 
