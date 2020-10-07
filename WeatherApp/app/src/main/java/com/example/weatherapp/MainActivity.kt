@@ -1,6 +1,7 @@
 package com.example.weatherapp
 
 import android.Manifest
+import android.content.Intent
 import android.content.pm.PackageManager
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -20,7 +21,7 @@ import com.example.weatherapp.ViewModel.MainViewModel
 import com.example.weatherapp.ViewModel.MyFactory
 import kotlinx.android.synthetic.main.activity_main.*
 
-class MainActivity : AppCompatActivity(), RecyclerView.OnItemTouchListener {
+class MainActivity : AppCompatActivity(), View.OnClickListener {
 
     //https://www.el-tiempo.net/api/json/v2/provincias/02/municipios/02070
     //https://www.el-tiempo.net/api/json/v1/provincias/02/municipios
@@ -54,17 +55,27 @@ class MainActivity : AppCompatActivity(), RecyclerView.OnItemTouchListener {
         viewModel = ViewModelProvider(this,myFactory).get(MainViewModel::class.java)
 
         viewModel.listaProvincia.observe(this){
-            recyclerAdapter = ProvinciaRecyclerAdapter(it)
+            recyclerAdapter = ProvinciaRecyclerAdapter(it,this,myFactory)
             listaProvincias.apply {
                 layoutManager = LinearLayoutManager(context)
                 adapter = recyclerAdapter
             }
         }
 
+        //Observo cuando cambia el id seleccionado porque eso significa que ya ha selecionado una provincia
+        viewModel.idProvinciaSeleccionada.observe(this){
+            var intentMunicipio = Intent(this,WeatherInfoActivity::class.java)
+            intentMunicipio.putExtra("idProvincia", it)
+            startActivity(intentMunicipio)
+        }
+
+        // TODO Mostrarlo como un mensajito con Toast
         viewModel.mensaje.observe(this){
             TVPruebas.text = it
         }
 
+        //TODO Quitar
+        BTNMunicipio.setOnClickListener(this)
         //Buscar otra forma o sino tendria que implementar el que la lista se mueva
         //listaProvincias.addOnItemTouchListener(this)
 
@@ -83,20 +94,17 @@ class MainActivity : AppCompatActivity(), RecyclerView.OnItemTouchListener {
                 else{
                     Toast.makeText(this,"Necesitamos tu localizacion",Toast.LENGTH_SHORT).show()
                 }
-            //Aqui para el interneto pero primero quiero ver si la la localizacion
+            //Aqui para el interneto pero primero quiero ver si la localizacion
         }
     }
 
-    override fun onInterceptTouchEvent(rv: RecyclerView, e: MotionEvent): Boolean {
-        return true
-    }
+    override fun onClick(v: View?) {
+        when(v?.id){
+            R.id.BTNMunicipio ->
+                {var intentMunicipio = Intent(this,WeatherInfoActivity::class.java)
+                startActivity(intentMunicipio)}
+        }
 
-    override fun onTouchEvent(rv: RecyclerView, e: MotionEvent) {
-        TVPruebas.text = "Hola"
-    }
-
-    override fun onRequestDisallowInterceptTouchEvent(disallowIntercept: Boolean) {
-        TODO("Not yet implemented")
     }
 
 

@@ -12,7 +12,7 @@ class MainViewModel: ViewModel() {
     var listaProvincia: MutableLiveData<ArrayList<Provincia>> = MutableLiveData()
     var mensaje: MutableLiveData<String> = MutableLiveData()
     var idProvinciaSeleccionada: MutableLiveData<String> = MutableLiveData()
-    var listaMunicipio: MutableLiveData<ArrayList<Municipio>> = MutableLiveData()
+
 
     fun setMensaje(mensajeNuevo: String) {
         mensaje.value = mensajeNuevo
