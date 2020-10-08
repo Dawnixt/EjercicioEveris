@@ -2,7 +2,9 @@ package com.example.weatherapp.ViewModel
 
 import androidx.lifecycle.*
 import com.example.weatherapp.Entities.Municipio
+import com.example.weatherapp.Entities.MunicipioTiempo
 import com.example.weatherapp.Retrofit.MunicipioCallback
+import com.example.weatherapp.Retrofit.MunicipioTiempoCallback
 
 class WeatherInfoViewModel(var lifecycleOwner: LifecycleOwner,var modelOwner: ViewModelStoreOwner): ViewModel() {
 
@@ -10,11 +12,23 @@ class WeatherInfoViewModel(var lifecycleOwner: LifecycleOwner,var modelOwner: Vi
     var mensaje: MutableLiveData<String> = MutableLiveData()
     var idMunicipioSeleccionada: MutableLiveData<String> = MutableLiveData()
     var municipioCallback: MunicipioCallback = MunicipioCallback(lifecycleOwner)
+    var municipioTiempoCallback: MunicipioTiempoCallback = MunicipioTiempoCallback(lifecycleOwner)
     var idProvincia: MutableLiveData<String> = MutableLiveData()
+    var municipioTiempo: MutableLiveData<MunicipioTiempo> = MutableLiveData()
 
-    //Crear un metodo que llame al Callback
+
+    /**
+     * Esta funcion sirve para cargar los datos de la listad de municipios
+     */
     fun obtenerListaMunicipios(){
         municipioCallback.start(modelOwner)
+    }
+
+    /**
+     * Esta funcion nos permitira obtener el tiempo de un municipio en concreto
+     */
+    fun obtenerMunicipioConTiempo(){
+        municipioTiempoCallback.start(modelOwner)
     }
 
     fun setMensaje(mensajeNuevo: String) {

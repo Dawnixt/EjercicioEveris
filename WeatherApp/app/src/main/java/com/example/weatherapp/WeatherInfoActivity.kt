@@ -13,7 +13,7 @@ class WeatherInfoActivity : AppCompatActivity() {
     var weatherInfoViewModel: WeatherInfoViewModel = WeatherInfoViewModel(this,this)
     var weatherInfoFactory: WeatherInfoFactory = WeatherInfoFactory(this,this)
     var fragmentListaMunicipios: FragmentListaMunicipios = FragmentListaMunicipios(this,this)
-    var fragmentMunicipioWeather: FragmentMunicipioWeather = FragmentMunicipioWeather()
+    var fragmentMunicipioWeather: FragmentMunicipioWeather = FragmentMunicipioWeather(this,this)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

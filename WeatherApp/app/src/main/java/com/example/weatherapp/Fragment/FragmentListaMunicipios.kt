@@ -28,8 +28,9 @@ class FragmentListaMunicipios(var lifeowner: LifecycleOwner,var modelOwner: View
 
         listaMunicipiosPorProvincia = root.findViewById(R.id.ListaMunicipiosdeProvincia)
 
+        //Observo la lista de municipios para que cuando lleguen los datos se construya el adaptador del recyclerView
         weatherInfoViewModel.listaMunicipio.observe(requireActivity()){
-            listaMunicipioRecyclerAdapter = MunicipioRecyclerAdapter(it)
+            listaMunicipioRecyclerAdapter = MunicipioRecyclerAdapter(it,modelOwner,weatherInfoFactory,lifeowner)
             listaMunicipiosPorProvincia?.apply {
                 layoutManager = LinearLayoutManager(root.context)
                 adapter = listaMunicipioRecyclerAdapter

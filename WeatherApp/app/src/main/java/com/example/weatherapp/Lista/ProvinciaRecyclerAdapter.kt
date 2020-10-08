@@ -3,7 +3,6 @@ package com.example.weatherapp.Lista
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelStoreOwner
 import androidx.recyclerview.widget.RecyclerView
@@ -11,11 +10,9 @@ import com.example.weatherapp.Entities.Provincia
 import com.example.weatherapp.R
 import com.example.weatherapp.ViewModel.MainViewModel
 import com.example.weatherapp.ViewModel.MyFactory
-import com.example.weatherapp.ViewModel.WeatherInfoViewModel
-import com.example.weatherapp.WeatherInfoActivity
 import kotlinx.android.synthetic.main.viewholder.view.*
 
-//El adapter de la lista de provincias
+
 class ProvinciaRecyclerAdapter(var provincias: ArrayList<Provincia>,var storeOwner: ViewModelStoreOwner, var viewModelFactory: MyFactory): RecyclerView.Adapter<ProvinciaViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ProvinciaViewHolder {
@@ -31,7 +28,7 @@ class ProvinciaRecyclerAdapter(var provincias: ArrayList<Provincia>,var storeOwn
     }
 }
 
-//El viewHoldwe de la lista de provincias
+
 class ProvinciaViewHolder(view: View, storeOwner: ViewModelStoreOwner, viewModelFactory: MyFactory): RecyclerView.ViewHolder(view), View.OnClickListener{
 
     var mainViewModel: MainViewModel = MainViewModel()
@@ -42,7 +39,7 @@ class ProvinciaViewHolder(view: View, storeOwner: ViewModelStoreOwner, viewModel
 
     }
 
-    var textViewNombreProvincia = view.TVNombre
+    var textViewNombreProvincia = view.TextViewNombre
 
     fun bind(row: Provincia){
         textViewNombreProvincia.text = row.NOMBRE_PROVINCIA

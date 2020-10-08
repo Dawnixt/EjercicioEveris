@@ -12,6 +12,6 @@ class MunicipioTiempo {
     var lluvia = ""
     //imagen
     var pronostico: Pronostico = Pronostico()
-    var proximos_dias: ProximosDias = ProximosDias()
+    var proximos_dias: ArrayList<ProximosDias> = ArrayList()
 
 }

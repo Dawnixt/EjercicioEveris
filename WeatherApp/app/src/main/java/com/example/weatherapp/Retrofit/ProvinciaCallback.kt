@@ -17,7 +17,9 @@ class ProvinciaCallback: Callback<ArrayList<Provincia>> {
     val SERVER_URL = "https://www.el-tiempo.net/api/json/"
     var viewModel: MainViewModel = MainViewModel()
 
-    //Mover a ViewModel
+    /**
+     * Esta funcion pedira la lista completa de provincias de la api
+     */
     fun start(owner: ViewModelStoreOwner){
         var gson: Gson = GsonBuilder().setLenient().create()
         viewModel = ViewModelProvider(owner).get(MainViewModel::class.java)

@@ -21,21 +21,8 @@ import com.example.weatherapp.ViewModel.MainViewModel
 import com.example.weatherapp.ViewModel.MyFactory
 import kotlinx.android.synthetic.main.activity_main.*
 
-class MainActivity : AppCompatActivity(), View.OnClickListener {
+class MainActivity : AppCompatActivity() {
 
-    //https://www.el-tiempo.net/api/json/v2/provincias/02/municipios/02070
-    //https://www.el-tiempo.net/api/json/v1/provincias/02/municipios
-    //https://www.el-tiempo.net/api/json/v2/municipios
-    //https://www.el-tiempo.net/api
-    //https://www.el-tiempo.net/api/json/v1/provincias
-    //https://www.el-tiempo.net/api/json/v2/home
-    //https://www.el-tiempo.net/api/json/v2/provincias
-    //https://www.el-tiempo.net/api/json/v2/provincias/02/municipios
-    //https://www.el-tiempo.net/api/json/v2/provincias/02/municipios/
-    //https://www.color-hex.com/color/44eded
-    //https://antonioleiva.com/recyclerview-listener/
-
-    //Mejor poner los nombres largos
     var viewModel: MainViewModel = MainViewModel()
     var myFactory: MyFactory = MyFactory()
     var recyclerAdapter: ProvinciaRecyclerAdapter? = null
@@ -54,6 +41,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
         viewModel = ViewModelProvider(this,myFactory).get(MainViewModel::class.java)
 
+        //Observo la lista de provincias para que cuando lleguen los datos se cree un nuevo adaptor
         viewModel.listaProvincia.observe(this){
             recyclerAdapter = ProvinciaRecyclerAdapter(it,this,myFactory)
             listaProvincias.apply {
@@ -69,17 +57,11 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             startActivity(intentMunicipio)
         }
 
-        // TODO Mostrarlo como un mensajito con Toast
+        //Si ocurre algun error lo mostrare por la pantalla
         viewModel.mensaje.observe(this){
-            TVPruebas.text = it
+            Toast.makeText(this,viewModel.mensaje.value,Toast.LENGTH_LONG).show()
         }
 
-        //TODO Quitar
-        BTNMunicipio.setOnClickListener(this)
-        //Buscar otra forma o sino tendria que implementar el que la lista se mueva
-        //listaProvincias.addOnItemTouchListener(this)
-
-        //Mover al ViewModel
         provinciaCallback.start(this)
 
     }
@@ -97,15 +79,5 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             //Aqui para el interneto pero primero quiero ver si la localizacion
         }
     }
-
-    override fun onClick(v: View?) {
-        when(v?.id){
-            R.id.BTNMunicipio ->
-                {var intentMunicipio = Intent(this,WeatherInfoActivity::class.java)
-                startActivity(intentMunicipio)}
-        }
-
-    }
-
 
 }
