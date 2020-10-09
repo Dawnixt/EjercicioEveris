@@ -21,7 +21,7 @@ import com.example.weatherapp.ViewModel.MainViewModel
 import com.example.weatherapp.ViewModel.MyFactory
 import kotlinx.android.synthetic.main.activity_main.*
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), View.OnClickListener {
 
     var viewModel: MainViewModel = MainViewModel()
     var myFactory: MyFactory = MyFactory()
@@ -52,7 +52,7 @@ class MainActivity : AppCompatActivity() {
 
         //Observo cuando cambia el id seleccionado porque eso significa que ya ha selecionado una provincia
         viewModel.idProvinciaSeleccionada.observe(this){
-            var intentMunicipio = Intent(this,WeatherInfoActivity::class.java)
+            val intentMunicipio = Intent(this,WeatherInfoActivity::class.java)
             intentMunicipio.putExtra("idProvincia", it)
             startActivity(intentMunicipio)
         }
@@ -61,6 +61,8 @@ class MainActivity : AppCompatActivity() {
         viewModel.mensaje.observe(this){
             Toast.makeText(this,viewModel.mensaje.value,Toast.LENGTH_LONG).show()
         }
+
+        BTNBuscar.setOnClickListener(this)
 
         provinciaCallback.start(this)
 
@@ -77,6 +79,15 @@ class MainActivity : AppCompatActivity() {
                     Toast.makeText(this,"Necesitamos tu localizacion",Toast.LENGTH_SHORT).show()
                 }
             //Aqui para el interneto pero primero quiero ver si la localizacion
+        }
+    }
+
+    override fun onClick(v: View?) {
+        //Buscar en la lista los elementos que coincidan con lo que se ha escrito y luego con esa nueva lista volver a crear el recycleview
+        for (i in 0 ..(viewModel.listaProvincia.value?.size ?: 0)) {
+
+
+
         }
     }
 

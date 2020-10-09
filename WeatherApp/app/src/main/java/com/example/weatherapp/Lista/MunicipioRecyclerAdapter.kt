@@ -38,15 +38,14 @@ class MunicipioViewHolder(view: View, storeOwner: ViewModelStoreOwner, weatherIn
         weatherInfoViewModel = ViewModelProvider(storeOwner,weatherInfoFactory).get(WeatherInfoViewModel::class.java)
     }
 
-
     fun bind(row: Municipio){
         textViewNombreMunicipio.text = row.NOMBRE
     }
 
     override fun onClick(v: View?) {
 
-        var CODarray = weatherInfoViewModel.listaMunicipio.value?.get(adapterPosition)?.CODIGOINE?.toCharArray()
-        var idMunicipio = "${CODarray?.get(0)}${CODarray?.get(1)}${CODarray?.get(2)}${CODarray?.get(3)}${CODarray?.get(4)}"
+        var arrayCodigoMunicipio = weatherInfoViewModel.listaMunicipio.value?.get(adapterPosition)?.CODIGOINE?.toCharArray()
+        var idMunicipio = "${arrayCodigoMunicipio?.get(0)}${arrayCodigoMunicipio?.get(1)}${arrayCodigoMunicipio?.get(2)}${arrayCodigoMunicipio?.get(3)}${arrayCodigoMunicipio?.get(4)}"
 
         weatherInfoViewModel.idMunicipioSeleccionada.value = idMunicipio
     }

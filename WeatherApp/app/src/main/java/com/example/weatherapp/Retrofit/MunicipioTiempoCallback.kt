@@ -27,10 +27,10 @@ class MunicipioTiempoCallback(var lifeowner: LifecycleOwner): Callback<Municipio
         weatherInfoViewModel = WeatherInfoViewModel(lifeowner,owner)
         weatherInfoViewModel = ViewModelProvider(owner).get(WeatherInfoViewModel::class.java)
 
-        var retrofit: Retrofit = Retrofit.Builder().baseUrl(SERVER_URL).addConverterFactory(GsonConverterFactory.create()).build()
-        var municipiotiempoInterface: MunicipioTiempoInterface = retrofit.create(MunicipioTiempoInterface::class.java)
+        val retrofit: Retrofit = Retrofit.Builder().baseUrl(SERVER_URL).addConverterFactory(GsonConverterFactory.create()).build()
+        val municipiotiempoInterface: MunicipioTiempoInterface = retrofit.create(MunicipioTiempoInterface::class.java)
 
-        var call: Call<MunicipioTiempo> = municipiotiempoInterface.getTiempoMunicipio(weatherInfoViewModel!!.idProvincia.value ?: "",
+        val call: Call<MunicipioTiempo> = municipiotiempoInterface.getTiempoMunicipio(weatherInfoViewModel!!.idProvincia.value ?: "",
             weatherInfoViewModel!!.idMunicipioSeleccionada.value ?: "")
 
         call.enqueue(this)
@@ -39,7 +39,7 @@ class MunicipioTiempoCallback(var lifeowner: LifecycleOwner): Callback<Municipio
 
     override fun onResponse(call: Call<MunicipioTiempo>, response: Response<MunicipioTiempo>) {
         if (response.isSuccessful){
-            var municipioTiempo: MunicipioTiempo = response.body() ?: MunicipioTiempo()
+            val municipioTiempo: MunicipioTiempo = response.body() ?: MunicipioTiempo()
             weatherInfoViewModel?.municipioTiempo?.value = municipioTiempo
         }
         else{

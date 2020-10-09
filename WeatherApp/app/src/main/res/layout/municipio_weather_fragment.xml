@@ -110,4 +110,33 @@
         app:layout_constraintStart_toEndOf="@+id/TextViewLabelHumedad"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <TextView
+        android:id="@+id/TVLabelManiana"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="273dp"
+        android:layout_marginTop="356dp"
+        android:layout_marginEnd="277dp"
+        android:layout_marginBottom="342dp"
+        android:text="Mañana"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/TextViewNombreMunicipio" />
+
+    <TextView
+        android:id="@+id/TextViewTemperaturaManiana"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="270dp"
+        android:layout_marginTop="91dp"
+        android:layout_marginEnd="273dp"
+        android:layout_marginBottom="232dp"
+        android:text="TextView"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/TVLabelManiana" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
