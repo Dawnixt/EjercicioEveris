@@ -86,8 +86,6 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         //Buscar en la lista los elementos que coincidan con lo que se ha escrito y luego con esa nueva lista volver a crear el recycleview
         for (i in 0 ..(viewModel.listaProvincia.value?.size ?: 0)) {
 
-
-
         }
     }
 

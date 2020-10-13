@@ -19,7 +19,6 @@ import kotlinx.android.synthetic.main.municipio_weather_fragment.*
 
 class FragmentMunicipioWeather(var lifeowner: LifecycleOwner, var modelOwner: ViewModelStoreOwner): Fragment() {
 
-    //, LoaderManager.LoaderCallbacks<MunicipioTiempo>
     var weatherInfoViewModel: WeatherInfoViewModel = WeatherInfoViewModel(lifeowner,modelOwner)
     var weatherInfoFactory: WeatherInfoFactory = WeatherInfoFactory(lifeowner,modelOwner)
 
@@ -42,20 +41,5 @@ class FragmentMunicipioWeather(var lifeowner: LifecycleOwner, var modelOwner: Vi
 
         return root
     }
-
-
-
-    //veo que loader esta bastante depricated pero bueno algo se podra hacer
-    /*override fun onCreateLoader(id: Int, args: Bundle?): Loader<MunicipioTiempo> {
-
-    }
-
-    override fun onLoadFinished(loader: Loader<MunicipioTiempo>, data: MunicipioTiempo?) {
-
-    }
-
-    override fun onLoaderReset(loader: Loader<MunicipioTiempo>) {
-
-    }*/
 
 }

@@ -31,8 +31,6 @@ class WeatherInfoActivity : AppCompatActivity() {
 
         weatherInfoViewModel.idProvincia.value = intent.getStringExtra("idProvincia")
 
-        //LoaderManager.getInstance(this)
-
         supportFragmentManager.beginTransaction().replace(R.id.fragment,fragmentListaMunicipios).commit()
 
         //Observo cuando cambia el id de municipio seleccionado para cambiar a otro fragment
