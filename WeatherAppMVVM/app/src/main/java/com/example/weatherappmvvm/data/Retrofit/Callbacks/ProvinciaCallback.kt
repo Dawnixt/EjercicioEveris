@@ -1,4 +1,4 @@
-package com.example.weatherappmvvm.data.Retrofit
+package com.example.weatherappmvvm.data.Retrofit.Callbacks
 
 import androidx.lifecycle.MutableLiveData
 import com.example.weatherappmvvm.domain.Model.Provincia
@@ -17,7 +17,7 @@ class ProvinciaCallback: Callback<ArrayList<Provincia>> {
 
     override fun onResponse(call: Call<ArrayList<Provincia>>,response: Response<ArrayList<Provincia>>) {
         if (response.isSuccessful){
-            var provincia: ArrayList<Provincia> = response.body() ?: ArrayList()
+            val provincia: ArrayList<Provincia> = response.body() ?: ArrayList()
             listaProvincias.value = provincia
         }
         else{

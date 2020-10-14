@@ -1,4 +1,4 @@
-package com.example.weatherappmvvm.data.Retrofit
+package com.example.weatherappmvvm.data.Retrofit.Interfaces
 
 import com.example.weatherappmvvm.domain.Model.MunicipioTiempo
 import retrofit2.Call
