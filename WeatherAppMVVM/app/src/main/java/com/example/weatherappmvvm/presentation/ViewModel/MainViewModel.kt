@@ -1,4 +1,4 @@
-package com.example.weatherappmvvm.domain.ViewModel
+package com.example.weatherappmvvm.presentation.ViewModel
 
 import androidx.lifecycle.*
 import com.example.weatherappmvvm.data.Retrofit.Callbacks.ProvinciaCallback

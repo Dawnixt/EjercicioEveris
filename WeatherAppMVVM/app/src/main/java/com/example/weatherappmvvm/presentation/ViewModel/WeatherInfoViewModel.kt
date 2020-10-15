@@ -1,4 +1,4 @@
-package com.example.weatherappmvvm.domain.ViewModel
+package com.example.weatherappmvvm.presentation.ViewModel
 
 import androidx.lifecycle.*
 import com.example.weatherappmvvm.data.Retrofit.Callbacks.MunicipioCallback
@@ -22,10 +22,7 @@ class WeatherInfoViewModel(var lifecycleOwner: LifecycleOwner, var modelOwner: V
     var municipioConTiempo: MutableLiveData<MunicipioTiempo> = MutableLiveData()
     var municipioTiempoCallback: MunicipioTiempoCallback =
         MunicipioTiempoCallback()
-    var municipioCallback: MunicipioCallback =
-        MunicipioCallback(
-            lifecycleOwner
-        )
+    var municipioCallback: MunicipioCallback = MunicipioCallback(lifecycleOwner)
     var mensaje: MutableLiveData<String> = MutableLiveData()
 
     val SERVER_URL = "https://www.el-tiempo.net/api/json/"
@@ -82,9 +79,7 @@ class WeatherInfoViewModel(var lifecycleOwner: LifecycleOwner, var modelOwner: V
                 municipioConTiempo.value = t
             }
         })
-
     }
-
 }
 
 class WeatherInfoFactory(var lifecycleOwner: LifecycleOwner,var modelOwner: ViewModelStoreOwner): ViewModelProvider.Factory {

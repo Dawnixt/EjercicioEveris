@@ -1,4 +1,4 @@
-package com.example.weatherappmvvm.domain.Lista
+package com.example.weatherappmvvm.presentation.Lista
 
 import android.view.LayoutInflater
 import android.view.View
@@ -9,8 +9,8 @@ import androidx.lifecycle.ViewModelStoreOwner
 import androidx.recyclerview.widget.RecyclerView
 import com.example.weatherappmvvm.R
 import com.example.weatherappmvvm.domain.Model.Provincia
-import com.example.weatherappmvvm.domain.ViewModel.MainViewModel
-import com.example.weatherappmvvm.domain.ViewModel.MyFactory
+import com.example.weatherappmvvm.presentation.ViewModel.MainViewModel
+import com.example.weatherappmvvm.presentation.ViewModel.MyFactory
 import kotlinx.android.synthetic.main.viewholder.view.*
 
 class ProvinciaRecyclerAdapter(var owner: LifecycleOwner,var provincias: ArrayList<Provincia>, var storeOwner: ViewModelStoreOwner, var viewModelFactory: MyFactory): RecyclerView.Adapter<ProvinciaViewHolder>() {

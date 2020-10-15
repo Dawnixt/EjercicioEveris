@@ -4,15 +4,14 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import android.widget.LinearLayout
 import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.weatherappmvvm.R
-import com.example.weatherappmvvm.domain.Lista.ProvinciaRecyclerAdapter
+import com.example.weatherappmvvm.presentation.Lista.ProvinciaRecyclerAdapter
 import com.example.weatherappmvvm.domain.Model.Provincia
-import com.example.weatherappmvvm.domain.ViewModel.*
+import com.example.weatherappmvvm.presentation.ViewModel.*
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {

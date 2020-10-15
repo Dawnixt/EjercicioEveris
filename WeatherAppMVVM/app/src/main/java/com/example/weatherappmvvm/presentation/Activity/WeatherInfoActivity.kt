@@ -5,8 +5,8 @@ import android.os.Bundle
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.example.weatherappmvvm.R
-import com.example.weatherappmvvm.domain.ViewModel.WeatherInfoFactory
-import com.example.weatherappmvvm.domain.ViewModel.WeatherInfoViewModel
+import com.example.weatherappmvvm.presentation.ViewModel.WeatherInfoFactory
+import com.example.weatherappmvvm.presentation.ViewModel.WeatherInfoViewModel
 import com.example.weatherappmvvm.presentation.Fragment.FragmentListaMunicipios
 import com.example.weatherappmvvm.presentation.Fragment.FragmentMunicipioWeather
 
@@ -30,7 +30,9 @@ class WeatherInfoActivity : AppCompatActivity() {
         //Observo para cuando seleccione un municipio poner el otro fragment
         weatherInfoViewModel.idMunicipioSeleccionada.observe(this,object: Observer<String>{
             override fun onChanged(t: String?) {
+                weatherInfoViewModel.getMunicipioConTiemppo()
                 supportFragmentManager.beginTransaction().replace(R.id.fragment,fragmentMunicipioWeather).addToBackStack(null).commit()
+                //supportFragmentManager.beginTransaction().remove(fragmentMunicipioWeather).commitAllowingStateLoss()
             }
         })
 

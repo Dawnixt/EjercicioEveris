@@ -12,10 +12,10 @@ import androidx.lifecycle.ViewModelStoreOwner
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.weatherappmvvm.R
-import com.example.weatherappmvvm.domain.Lista.MunicipioRecyclerAdapter
+import com.example.weatherappmvvm.presentation.Lista.MunicipioRecyclerAdapter
 import com.example.weatherappmvvm.domain.Model.Municipio
-import com.example.weatherappmvvm.domain.ViewModel.WeatherInfoFactory
-import com.example.weatherappmvvm.domain.ViewModel.WeatherInfoViewModel
+import com.example.weatherappmvvm.presentation.ViewModel.WeatherInfoFactory
+import com.example.weatherappmvvm.presentation.ViewModel.WeatherInfoViewModel
 
 class FragmentListaMunicipios(var lifeowner: LifecycleOwner, var modelOwner: ViewModelStoreOwner): Fragment() {
 
