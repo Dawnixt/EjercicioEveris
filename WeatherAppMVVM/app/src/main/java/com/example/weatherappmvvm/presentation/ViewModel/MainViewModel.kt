@@ -11,18 +11,21 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 class MainViewModel(var owner: LifecycleOwner): ViewModel() {
+companion object {
 
-    val provinciaCallback: ProvinciaCallback =
-        ProvinciaCallback()
-    val SERVER_URL = "https://www.el-tiempo.net/api/json/"
+    const val SERVER_URL = "https://www.el-tiempo.net/api/json/"
+
+}
+    val provinciaCallback: ProvinciaCallback = ProvinciaCallback()
     var mensaje: MutableLiveData<String> = MutableLiveData()
     val listadoProvincias: MutableLiveData<ArrayList<Provincia>> = MutableLiveData()
     var idProvinciaSeleccionada: MutableLiveData<String> = MutableLiveData()
-
+    //Los paquetes siempre en minuscula
 
     /**
      * Esta funcion llamara a la api para que nos de la lista de provincias y observara los datos para cuando lleguen
      */
+    //Dominio donde esta los modelos para hacer los objetos
     fun getListadoProvincias(){
 
         var gson: Gson = GsonBuilder().setLenient().create()
@@ -47,7 +50,6 @@ class MainViewModel(var owner: LifecycleOwner): ViewModel() {
             }
         })
     }
-
 }
 
 class MyFactory(var owner: LifecycleOwner): ViewModelProvider.Factory {

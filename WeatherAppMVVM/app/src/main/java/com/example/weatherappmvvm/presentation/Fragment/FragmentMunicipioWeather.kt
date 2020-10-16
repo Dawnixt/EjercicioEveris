@@ -17,10 +17,10 @@ import com.example.weatherappmvvm.presentation.ViewModel.WeatherInfoViewModel
 import com.example.weatherappmvvm.presentation.Alert.LoadingDialog
 import java.util.*
 
-class FragmentMunicipioWeather(var lifeowner: LifecycleOwner, var modelOwner: ViewModelStoreOwner): Fragment() {
+class FragmentMunicipioWeather(var lifeowner: LifecycleOwner): Fragment() {
 
-    var weatherInfoViewModel: WeatherInfoViewModel = WeatherInfoViewModel(lifeowner,modelOwner)
-    var weatherInfoFactory: WeatherInfoFactory = WeatherInfoFactory(lifeowner,modelOwner)
+    var weatherInfoViewModel: WeatherInfoViewModel = WeatherInfoViewModel(lifeowner)
+    var weatherInfoFactory: WeatherInfoFactory = WeatherInfoFactory(lifeowner)
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
@@ -30,25 +30,27 @@ class FragmentMunicipioWeather(var lifeowner: LifecycleOwner, var modelOwner: Vi
         val textViewHumedad = root.findViewById<TextView>(R.id.TextViewHumedad)
         val textViewTiempo = root.findViewById<TextView>(R.id.TextViewTiempo)
         val textViewTemperaturaManiana = root.findViewById<TextView>(R.id.TextViewTemperaturaManiana)
-        val loading: LoadingDialog = LoadingDialog(requireActivity())
 
-        loading.startDialog()
         weatherInfoViewModel = ViewModelProvider(requireActivity(),weatherInfoFactory).get(WeatherInfoViewModel::class.java)
 
         //Observo para cuando el municipio con el tiempo poner los datos en los TextViews
         weatherInfoViewModel.municipioConTiempo.observe(lifeowner, object: Observer<MunicipioTiempo>{
             override fun onChanged(t: MunicipioTiempo?) {
                 if (t != null) {
+                    //loading.startDialog()
+                    //loading.show()
                     textViewNombreMunicipio.text =  t.municipio.NOMBRE.toUpperCase(Locale.ROOT)
                     textViewTemperatura.text = t.temperatura_actual.plus("º")
                     textViewHumedad.text = t.humedad
                     textViewTiempo.text = t.stateSky.description
                     textViewTemperaturaManiana.text = t.pronostico.manana.temperatura[0].plus("º aprox")
-                    loading.dismissDialog()
+                    //loading.dismissDialog()
                 }
             }
         })
         return root
     }
+
+
 
 }

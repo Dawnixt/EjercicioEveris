@@ -2,6 +2,8 @@ package com.example.weatherappmvvm.presentation.Activity
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.LayoutInflater
+import androidx.appcompat.app.AlertDialog
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.example.weatherappmvvm.R
@@ -12,10 +14,10 @@ import com.example.weatherappmvvm.presentation.Fragment.FragmentMunicipioWeather
 
 class WeatherInfoActivity : AppCompatActivity() {
 
-    var weatherInfoViewModel: WeatherInfoViewModel = WeatherInfoViewModel(this,this)
-    var weatherInfoFactory: WeatherInfoFactory = WeatherInfoFactory(this,this)
+    var weatherInfoViewModel: WeatherInfoViewModel = WeatherInfoViewModel(this)
+    var weatherInfoFactory: WeatherInfoFactory = WeatherInfoFactory(this)
     var fragmentListaMunicipios: FragmentListaMunicipios = FragmentListaMunicipios(this,this)
-    var fragmentMunicipioWeather: FragmentMunicipioWeather = FragmentMunicipioWeather(this,this)
+    var fragmentMunicipioWeather: FragmentMunicipioWeather = FragmentMunicipioWeather(this)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -25,7 +27,7 @@ class WeatherInfoActivity : AppCompatActivity() {
 
         weatherInfoViewModel.idProvincia.value = intent.getStringExtra("idProvincia")
 
-        supportFragmentManager.beginTransaction().replace(R.id.fragment,fragmentListaMunicipios).addToBackStack(null).commit()
+        supportFragmentManager.beginTransaction().replace(R.id.fragment,fragmentListaMunicipios).commit()
 
         //Observo para cuando seleccione un municipio poner el otro fragment
         weatherInfoViewModel.idMunicipioSeleccionada.observe(this,object: Observer<String>{
@@ -35,6 +37,5 @@ class WeatherInfoActivity : AppCompatActivity() {
                 //supportFragmentManager.beginTransaction().remove(fragmentMunicipioWeather).commitAllowingStateLoss()
             }
         })
-
     }
 }

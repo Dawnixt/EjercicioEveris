@@ -14,23 +14,22 @@ import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
-class WeatherInfoViewModel(var lifecycleOwner: LifecycleOwner, var modelOwner: ViewModelStoreOwner): ViewModel() {
+class WeatherInfoViewModel(var lifecycleOwner: LifecycleOwner): ViewModel() {
 
     var listaMunicipio:MutableLiveData<ArrayList<Municipio>> = MutableLiveData()
     var idMunicipioSeleccionada: MutableLiveData<String> = MutableLiveData()
     var idProvincia: MutableLiveData<String> = MutableLiveData()
     var municipioConTiempo: MutableLiveData<MunicipioTiempo> = MutableLiveData()
-    var municipioTiempoCallback: MunicipioTiempoCallback =
-        MunicipioTiempoCallback()
+    var municipioTiempoCallback: MunicipioTiempoCallback = MunicipioTiempoCallback()
     var municipioCallback: MunicipioCallback = MunicipioCallback(lifecycleOwner)
     var mensaje: MutableLiveData<String> = MutableLiveData()
-
     val SERVER_URL = "https://www.el-tiempo.net/api/json/"
 
     /**
      * Esta funcion llamara a la api para cpnseguir la lista de municipios de una provincia y observara para cuando lleguen los datos
      */
     fun getListadoMunicipiosDeProvincia(){
+
         var gson: Gson = GsonBuilder().setLenient().create()
 
         val retrofit: Retrofit = Retrofit.Builder().baseUrl(SERVER_URL).addConverterFactory(
@@ -82,8 +81,8 @@ class WeatherInfoViewModel(var lifecycleOwner: LifecycleOwner, var modelOwner: V
     }
 }
 
-class WeatherInfoFactory(var lifecycleOwner: LifecycleOwner,var modelOwner: ViewModelStoreOwner): ViewModelProvider.Factory {
+class WeatherInfoFactory(var lifecycleOwner: LifecycleOwner): ViewModelProvider.Factory {
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-        return WeatherInfoViewModel(lifecycleOwner,modelOwner) as T
+        return WeatherInfoViewModel(lifecycleOwner) as T
     }
 }

@@ -19,8 +19,8 @@ import com.example.weatherappmvvm.presentation.ViewModel.WeatherInfoViewModel
 
 class FragmentListaMunicipios(var lifeowner: LifecycleOwner, var modelOwner: ViewModelStoreOwner): Fragment() {
 
-    var weatherInfoViewModel: WeatherInfoViewModel = WeatherInfoViewModel(lifeowner,modelOwner)
-    var weatherInfoFactory: WeatherInfoFactory = WeatherInfoFactory(lifeowner,modelOwner)
+    var weatherInfoViewModel: WeatherInfoViewModel = WeatherInfoViewModel(lifeowner)
+    var weatherInfoFactory: WeatherInfoFactory = WeatherInfoFactory(lifeowner)
     var listaMunicipioRecyclerAdapter: MunicipioRecyclerAdapter? = null
     var listaMunicipiosPorProvincia: RecyclerView? = null
 

@@ -30,7 +30,7 @@ class MunicipioRecyclerAdapter(var municipios: ArrayList<Municipio>, var storeOw
 class MunicipioViewHolder(view: View, storeOwner: ViewModelStoreOwner, weatherInfoFactory: WeatherInfoFactory, lifecycleOwner: LifecycleOwner): RecyclerView.ViewHolder(view), View.OnClickListener{
 
     var textViewNombreMunicipio = view.TextViewNombre
-    var weatherInfoViewModel: WeatherInfoViewModel = WeatherInfoViewModel(lifecycleOwner,storeOwner)
+    var weatherInfoViewModel: WeatherInfoViewModel = WeatherInfoViewModel(lifecycleOwner)
 
     init {
         view.setOnClickListener(this)

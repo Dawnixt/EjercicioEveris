@@ -17,6 +17,9 @@ class LoadingDialog(var activity: Activity) {
         builder.setCancelable(false)
 
         dialog = builder.create()
+    }
+
+    fun show(){
         dialog.show()
     }
 
