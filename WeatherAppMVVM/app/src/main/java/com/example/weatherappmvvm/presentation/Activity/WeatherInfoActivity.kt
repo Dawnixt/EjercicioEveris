@@ -7,6 +7,7 @@ import androidx.appcompat.app.AlertDialog
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.example.weatherappmvvm.R
+import com.example.weatherappmvvm.presentation.Alert.LoadingDialog
 import com.example.weatherappmvvm.presentation.ViewModel.WeatherInfoFactory
 import com.example.weatherappmvvm.presentation.ViewModel.WeatherInfoViewModel
 import com.example.weatherappmvvm.presentation.Fragment.FragmentListaMunicipios
@@ -22,8 +23,9 @@ class WeatherInfoActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_weather_info)
-
         weatherInfoViewModel = ViewModelProvider(this,weatherInfoFactory).get(WeatherInfoViewModel::class.java)
+        //val loadingDialog = LoadingDialog(this)
+        //weatherInfoViewModel.loadingDialog = loadingDialog
 
         weatherInfoViewModel.idProvincia.value = intent.getStringExtra("idProvincia")
 

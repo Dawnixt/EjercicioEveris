@@ -8,6 +8,7 @@ import com.example.weatherappmvvm.data.Retrofit.Interfaces.MunicipioTiempoInterf
 import com.example.weatherappmvvm.domain.Model.Municipio
 import com.example.weatherappmvvm.domain.Model.MunicipioTiempo
 import com.example.weatherappmvvm.domain.Model.Municipios
+import com.example.weatherappmvvm.presentation.Alert.LoadingDialog
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import retrofit2.Call
@@ -22,6 +23,7 @@ class WeatherInfoViewModel(var lifecycleOwner: LifecycleOwner): ViewModel() {
     var municipioConTiempo: MutableLiveData<MunicipioTiempo> = MutableLiveData()
     var municipioTiempoCallback: MunicipioTiempoCallback = MunicipioTiempoCallback()
     var municipioCallback: MunicipioCallback = MunicipioCallback(lifecycleOwner)
+    //var loadingDialog: LoadingDialog? = null
     var mensaje: MutableLiveData<String> = MutableLiveData()
     val SERVER_URL = "https://www.el-tiempo.net/api/json/"
 
@@ -31,7 +33,6 @@ class WeatherInfoViewModel(var lifecycleOwner: LifecycleOwner): ViewModel() {
     fun getListadoMunicipiosDeProvincia(){
 
         var gson: Gson = GsonBuilder().setLenient().create()
-
         val retrofit: Retrofit = Retrofit.Builder().baseUrl(SERVER_URL).addConverterFactory(
             GsonConverterFactory.create()).build()
         val municipioInterface: MunicipioInterface = retrofit.create(
@@ -58,6 +59,8 @@ class WeatherInfoViewModel(var lifecycleOwner: LifecycleOwner): ViewModel() {
      * Esta funcion llamara a la api para conseguir el tiempo de un municipio y observara para cuando lleguen los datos
      */
     fun getMunicipioConTiemppo(){
+        //loadingDialog?.startDialog()
+        //loadingDialog?.show()
         var gson: Gson = GsonBuilder().setLenient().create()
         val retrofit: Retrofit = Retrofit.Builder().baseUrl(SERVER_URL).addConverterFactory(GsonConverterFactory.create()).build()
         val municipiotiempoInterface: MunicipioTiempoInterface = retrofit.create(
