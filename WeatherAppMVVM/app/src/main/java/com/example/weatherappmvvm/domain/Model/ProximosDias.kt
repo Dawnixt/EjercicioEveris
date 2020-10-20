@@ -1,4 +1,4 @@
-package com.example.weatherappmvvm.domain.Model
+package com.example.weatherappmvvm.domain.model
 
 class ProximosDias {
 

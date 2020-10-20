@@ -1,8 +1,8 @@
-package com.example.weatherappmvvm.data.Retrofit.Callbacks
+package com.example.weatherappmvvm.data.retrofit.callbacks
 
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.MutableLiveData
-import com.example.weatherappmvvm.domain.Model.*
+import com.example.weatherappmvvm.domain.model.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response

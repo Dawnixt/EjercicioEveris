@@ -1,4 +1,4 @@
-package com.example.weatherappmvvm.domain.Model
+package com.example.weatherappmvvm.domain.model
 
 class MunicipioTiempo {
 
@@ -12,5 +12,5 @@ class MunicipioTiempo {
     var lluvia = ""
     //imagen
     var pronostico: Pronostico = Pronostico()
-    var proximos_dias: ArrayList<ProximosDias> = ArrayList()
+    //var proximos_dias: ArrayList<ProximosDias> = ArrayList()
 }

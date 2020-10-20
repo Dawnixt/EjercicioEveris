@@ -1,14 +1,13 @@
-package com.example.weatherappmvvm.presentation.ViewModel
+package com.example.weatherappmvvm.presentation.viewModel
 
 import androidx.lifecycle.*
-import com.example.weatherappmvvm.data.Retrofit.Callbacks.MunicipioCallback
-import com.example.weatherappmvvm.data.Retrofit.Interfaces.MunicipioInterface
-import com.example.weatherappmvvm.data.Retrofit.Callbacks.MunicipioTiempoCallback
-import com.example.weatherappmvvm.data.Retrofit.Interfaces.MunicipioTiempoInterface
-import com.example.weatherappmvvm.domain.Model.Municipio
-import com.example.weatherappmvvm.domain.Model.MunicipioTiempo
-import com.example.weatherappmvvm.domain.Model.Municipios
-import com.example.weatherappmvvm.presentation.Alert.LoadingDialog
+import com.example.weatherappmvvm.data.retrofit.callbacks.MunicipioCallback
+import com.example.weatherappmvvm.data.retrofit.interfaces.MunicipioInterface
+import com.example.weatherappmvvm.data.retrofit.callbacks.MunicipioTiempoCallback
+import com.example.weatherappmvvm.data.retrofit.interfaces.MunicipioTiempoInterface
+import com.example.weatherappmvvm.domain.model.Municipio
+import com.example.weatherappmvvm.domain.model.MunicipioTiempo
+import com.example.weatherappmvvm.domain.model.Municipios
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import retrofit2.Call
@@ -59,8 +58,6 @@ class WeatherInfoViewModel(var lifecycleOwner: LifecycleOwner): ViewModel() {
      * Esta funcion llamara a la api para conseguir el tiempo de un municipio y observara para cuando lleguen los datos
      */
     fun getMunicipioConTiemppo(){
-        //loadingDialog?.startDialog()
-        //loadingDialog?.show()
         var gson: Gson = GsonBuilder().setLenient().create()
         val retrofit: Retrofit = Retrofit.Builder().baseUrl(SERVER_URL).addConverterFactory(GsonConverterFactory.create()).build()
         val municipiotiempoInterface: MunicipioTiempoInterface = retrofit.create(
@@ -81,11 +78,5 @@ class WeatherInfoViewModel(var lifecycleOwner: LifecycleOwner): ViewModel() {
                 municipioConTiempo.value = t
             }
         })
-    }
-}
-
-class WeatherInfoFactory(var lifecycleOwner: LifecycleOwner): ViewModelProvider.Factory {
-    override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-        return WeatherInfoViewModel(lifecycleOwner) as T
     }
 }

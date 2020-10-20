@@ -1,6 +1,6 @@
-package com.example.weatherappmvvm.data.Retrofit.Interfaces
+package com.example.weatherappmvvm.data.retrofit.interfaces
 
-import com.example.weatherappmvvm.domain.Model.MunicipioTiempo
+import com.example.weatherappmvvm.domain.model.MunicipioTiempo
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Path

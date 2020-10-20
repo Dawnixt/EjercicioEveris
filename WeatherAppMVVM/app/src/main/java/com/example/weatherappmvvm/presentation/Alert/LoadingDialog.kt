@@ -1,4 +1,4 @@
-package com.example.weatherappmvvm.presentation.Alert
+package com.example.weatherappmvvm.presentation.alert
 
 import android.app.Activity
 import android.app.AlertDialog
@@ -9,7 +9,6 @@ import com.example.weatherappmvvm.R
 class LoadingDialog(var activity: Activity) {
 
     lateinit var dialog: AlertDialog
-    lateinit var dialogInterface: DialogInterface
 
     fun startDialog(){
 
@@ -22,13 +21,17 @@ class LoadingDialog(var activity: Activity) {
         dialog = builder.create()
     }
 
-    fun show(){
+    fun show() {
         dialog.show()
     }
 
+    fun setOnShowListener(param: DialogInterface.OnShowListener){
+        dialog.setOnShowListener(param)
+    }
+
     fun dismissDialog(){
-        dialogInterface.dismiss()
-        //dialog.dismiss()
+        //dialogInterface.dismiss()
+        dialog.dismiss()
     }
 
 }

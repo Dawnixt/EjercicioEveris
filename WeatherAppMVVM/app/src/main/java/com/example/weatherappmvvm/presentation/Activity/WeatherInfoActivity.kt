@@ -1,17 +1,14 @@
-package com.example.weatherappmvvm.presentation.Activity
+package com.example.weatherappmvvm.presentation.activity
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.LayoutInflater
-import androidx.appcompat.app.AlertDialog
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.example.weatherappmvvm.R
-import com.example.weatherappmvvm.presentation.Alert.LoadingDialog
-import com.example.weatherappmvvm.presentation.ViewModel.WeatherInfoFactory
-import com.example.weatherappmvvm.presentation.ViewModel.WeatherInfoViewModel
-import com.example.weatherappmvvm.presentation.Fragment.FragmentListaMunicipios
-import com.example.weatherappmvvm.presentation.Fragment.FragmentMunicipioWeather
+import com.example.weatherappmvvm.presentation.viewModel.WeatherInfoFactory
+import com.example.weatherappmvvm.presentation.viewModel.WeatherInfoViewModel
+import com.example.weatherappmvvm.presentation.fragment.FragmentListaMunicipios
+import com.example.weatherappmvvm.presentation.fragment.FragmentMunicipioWeather
 
 class WeatherInfoActivity : AppCompatActivity() {
 
@@ -24,8 +21,6 @@ class WeatherInfoActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_weather_info)
         weatherInfoViewModel = ViewModelProvider(this,weatherInfoFactory).get(WeatherInfoViewModel::class.java)
-        //val loadingDialog = LoadingDialog(this)
-        //weatherInfoViewModel.loadingDialog = loadingDialog
 
         weatherInfoViewModel.idProvincia.value = intent.getStringExtra("idProvincia")
 
@@ -36,7 +31,6 @@ class WeatherInfoActivity : AppCompatActivity() {
             override fun onChanged(t: String?) {
                 weatherInfoViewModel.getMunicipioConTiemppo()
                 supportFragmentManager.beginTransaction().replace(R.id.fragment,fragmentMunicipioWeather).addToBackStack(null).commit()
-                //supportFragmentManager.beginTransaction().remove(fragmentMunicipioWeather).commitAllowingStateLoss()
             }
         })
     }

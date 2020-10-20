@@ -1,4 +1,4 @@
-package com.example.weatherappmvvm.presentation.Fragment
+package com.example.weatherappmvvm.presentation.fragment
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -12,10 +12,10 @@ import androidx.lifecycle.ViewModelStoreOwner
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.weatherappmvvm.R
-import com.example.weatherappmvvm.presentation.Lista.MunicipioRecyclerAdapter
-import com.example.weatherappmvvm.domain.Model.Municipio
-import com.example.weatherappmvvm.presentation.ViewModel.WeatherInfoFactory
-import com.example.weatherappmvvm.presentation.ViewModel.WeatherInfoViewModel
+import com.example.weatherappmvvm.presentation.lista.adapter.MunicipioRecyclerAdapter
+import com.example.weatherappmvvm.domain.model.Municipio
+import com.example.weatherappmvvm.presentation.viewModel.WeatherInfoFactory
+import com.example.weatherappmvvm.presentation.viewModel.WeatherInfoViewModel
 
 class FragmentListaMunicipios(var lifeowner: LifecycleOwner, var modelOwner: ViewModelStoreOwner): Fragment() {
 

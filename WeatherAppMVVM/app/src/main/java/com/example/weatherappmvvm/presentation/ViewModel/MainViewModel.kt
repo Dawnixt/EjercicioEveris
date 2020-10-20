@@ -1,9 +1,9 @@
-package com.example.weatherappmvvm.presentation.ViewModel
+package com.example.weatherappmvvm.presentation.viewModel
 
 import androidx.lifecycle.*
-import com.example.weatherappmvvm.data.Retrofit.Callbacks.ProvinciaCallback
-import com.example.weatherappmvvm.data.Retrofit.Interfaces.ProvinciaInterface
-import com.example.weatherappmvvm.domain.Model.Provincia
+import com.example.weatherappmvvm.data.retrofit.callbacks.ProvinciaCallback
+import com.example.weatherappmvvm.data.retrofit.interfaces.ProvinciaInterface
+import com.example.weatherappmvvm.domain.model.Provincia
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import retrofit2.Call
@@ -52,9 +52,4 @@ companion object {
     }
 }
 
-class MyFactory(var owner: LifecycleOwner): ViewModelProvider.Factory {
-    override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-        return MainViewModel(owner) as T
-    }
-}
 

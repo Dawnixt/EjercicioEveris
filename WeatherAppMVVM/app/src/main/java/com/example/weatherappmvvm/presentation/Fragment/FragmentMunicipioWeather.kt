@@ -1,6 +1,5 @@
-package com.example.weatherappmvvm.presentation.Fragment
+package com.example.weatherappmvvm.presentation.fragment
 
-import android.app.AlertDialog
 import android.content.DialogInterface
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -11,14 +10,15 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.ViewModelStoreOwner
 import com.example.weatherappmvvm.R
-import com.example.weatherappmvvm.domain.Model.MunicipioTiempo
-import com.example.weatherappmvvm.presentation.ViewModel.WeatherInfoFactory
-import com.example.weatherappmvvm.presentation.ViewModel.WeatherInfoViewModel
-import com.example.weatherappmvvm.presentation.Alert.LoadingDialog
+import com.example.weatherappmvvm.domain.model.MunicipioTiempo
+import com.example.weatherappmvvm.presentation.viewModel.WeatherInfoFactory
+import com.example.weatherappmvvm.presentation.viewModel.WeatherInfoViewModel
+import com.example.weatherappmvvm.presentation.alert.LoadingDialog
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 import java.util.*
-import java.util.concurrent.TimeUnit
 
 class FragmentMunicipioWeather(var lifeowner: LifecycleOwner): Fragment(),DialogInterface.OnShowListener {
 
@@ -28,8 +28,8 @@ class FragmentMunicipioWeather(var lifeowner: LifecycleOwner): Fragment(),Dialog
     lateinit var textViewTemperatura: TextView
     lateinit var textViewHumedad: TextView
     lateinit var textViewTiempo: TextView
-    var repetition = true
     lateinit var textViewTemperaturaManiana: TextView
+    var dataloaded = false
     var aux: MunicipioTiempo = MunicipioTiempo()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -40,18 +40,23 @@ class FragmentMunicipioWeather(var lifeowner: LifecycleOwner): Fragment(),Dialog
         textViewHumedad = root.findViewById<TextView>(R.id.TextViewHumedad)
         textViewTiempo = root.findViewById<TextView>(R.id.TextViewTiempo)
         textViewTemperaturaManiana = root.findViewById<TextView>(R.id.TextViewTemperaturaManiana)
-        var loadingDialog: LoadingDialog = LoadingDialog(requireActivity())
+        val loadingDialog: LoadingDialog = LoadingDialog(requireActivity())
         loadingDialog.startDialog()
         loadingDialog.dialog.setOnShowListener(this)
         weatherInfoViewModel = ViewModelProvider(requireActivity(),weatherInfoFactory).get(WeatherInfoViewModel::class.java)
+        loadingDialog.show()
 
         //Observo para cuando el municipio con el tiempo poner los datos en los TextViews
         weatherInfoViewModel.municipioConTiempo.observe(lifeowner, object: Observer<MunicipioTiempo>{
             override fun onChanged(t: MunicipioTiempo?) {
                 if (t != null) {
-                    loadingDialog.show()
-                    if ( aux != t){
-                        repetition = false
+                    if (aux != t){
+                        textViewNombreMunicipio.text = t.municipio.NOMBRE.toUpperCase(Locale.ROOT)
+                        textViewTemperatura.text = t.temperatura_actual.plus("º")
+                        textViewHumedad.text = t.humedad
+                        textViewTiempo.text = t.stateSky.description
+                        textViewTemperaturaManiana.text = t.pronostico.manana.temperatura.get(0).plus("º aprox")
+                        dataloaded = true
                         aux = t
                     }
                 }
@@ -61,17 +66,13 @@ class FragmentMunicipioWeather(var lifeowner: LifecycleOwner): Fragment(),Dialog
     }
 
     override fun onShow(dialog: DialogInterface?) {
-        //Poner la interface en una variable y usarla
-        if (!repetition){
-            textViewNombreMunicipio.text =  aux.municipio.NOMBRE.toUpperCase(Locale.ROOT)
-            textViewTemperatura.text = aux.temperatura_actual.plus("º")
-            textViewHumedad.text = aux.humedad
-            textViewTiempo.text = aux.stateSky.description
-            textViewTemperaturaManiana.text = aux.pronostico.manana.temperatura[0].plus("º aprox")
+        GlobalScope.launch {
+            while (!dataloaded){
+                delay(1)
+            }
+            dialog?.dismiss()
+            dataloaded = false
         }
-        //TimeUnit.MILLISECONDS.sleep(3000)
-        dialog?.dismiss()
-        repetition = true
     }
 
 }
