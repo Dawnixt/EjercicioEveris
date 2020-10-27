@@ -5,6 +5,6 @@ import androidx.lifecycle.ViewModelProvider
 
 class InsertarDatosFactory(): ViewModelProvider.Factory {
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-        TODO("Not yet implemented")
+        return InsertarDatosViewModel() as T
     }
 }
