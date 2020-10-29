@@ -39,6 +39,10 @@ class FragmentMunicipioWeather(var lifeowner: LifecycleOwner, var modelOwner: Vi
             loading.dismissDialog()
         }
 
+        weatherInfoViewModel.municipioTiempo.observe(lifeowner){
+
+        }
+
         return root
     }
 
