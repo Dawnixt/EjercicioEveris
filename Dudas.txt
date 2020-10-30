@@ -1,0 +1,52 @@
+Left - Right es para donde mueves la actividad
+--Que es CommonKoinConfiguration
+Que es letter metodo?
+Manifest.permission.USE_FINGERPRINT esta depecrated BiometricUtils in Java
+Biometric para autentificar? tambien ayuda a implementar el que se use la huella dactilar
+isHardwareSupported sirve para saber si ese movil implementa tecnologia capaz de usar huellas dactialares?
+--String.convertPrettyJsonToOneLineJson jajajaja
+Elsegundo validate DNI y porque hay dos?
+getPhoneManufacturer?
+What  Mockito.`when`
+this.isLayoutFrozen depecrated in java, label.setTextAppearance tambien
+KClass?
+wall?
+ArchiveMessage Test.kt
+GetConversationRemoteDataSource para que
+que son los recipientes?
+CoroutinesTestRule ques't ?
+--Mapper
+DataSource es de donde vienen los datos
+parsedDesponse que es 
+rangeTime es el horario y solo el horario?
+aluatpro GetAuthDetailResponse
+Una lista de autorizaciones
+authPerson
+contrary es un parte o algo por el estilo?
+evaluableMatters son las materias?
+EvaluableActData son cosas evaluables
+EventResponse priority annotation?
+prof en ScheduleResponse
+unity en TutorshipResponse
+KeyPairGeneratorSpec depecrated
+Que es el recipient?
+SendMessageError vacio
+el getFile para que se necesita y el home
+Que es Business
+que significa di
+fragmentManager depecrated
+blank?
+porque fingerprint esta fuera
+
+
+
+***
+[martes 11:44] Manuel Martinez Cerquera
+    SOLID: https://profile.es/blog/principios-solid-desarrollo-software-calidad/
+Clean Architecture: https://devexperto.com/clean-architecture-android/
+Patrones de diseño y Clean Architecture: https://medium.com/@vespasoft/patrones-arquitect%C3%B3nicos-en-android-ded39f7a2c10
+Kotlin: https://devexperto.com/kotlin-android-curso-gratis/
+MVVM: https://medium.com/@reyes.leomaris/aplicando-el-patr%C3%B3n-de-dise%C3%B1o-mvvm-d4156e51bbe5
+Corutinas en Kotlin: https://devexperto.com/corrutinas/
+SOLID: los 5 principios que te ayudarán a desarrollar software de calidad | Consultoría y Servicios IT para empresas | Profile Software ServicesLos principios SOLID son uno de los fundamentos de la arquitectura y el desarrollo de software.profile.es
+***
